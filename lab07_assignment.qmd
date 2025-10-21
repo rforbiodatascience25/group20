@@ -1,0 +1,87 @@
+---
+title: "lab07_assignment"
+format: html
+editor: visual
+---
+
+## Load Libraries
+
+```{r}
+library("tidyverse")
+library("broom")
+library("cowplot")
+```
+
+## Load data
+
+We will in this mini-report a biopsy dataset from the university of Wisconsin Hospitals. A set of 699 patients and a sample from nine variables with a scoring of 1-10 seen in the figure below, along with the outcome of the tumor.
+
+```{r}
+#| message: false
+biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
+biopsy |> glimpse(width = 5)
+```
+
+## Data Wrangle
+
+```{r}
+pca_fit <- biopsy |>
+  select(where(is.numeric)) |>
+  prcomp(scale = TRUE)
+```
+
+```{r}
+pca_fit_score <- pca_fit |>
+  augment(biopsy) |>
+  rename_with(~str_remove(.x, ".fitted"), starts_with(".fitted"))
+```
+
+## Analysis
+
+## PC coordinates
+
+```{r}
+plot_pc <- function(pc_x, pc_y) {
+  ggplot(pca_fit_score, aes_string(x = pc_x, y = pc_y, color = "outcome")) +
+    geom_point(size = 1.5, alpha = 0.8) +
+    scale_color_manual(
+      values = c(malignant = "salmon", benign = "skyblue")
+    ) +
+    theme_half_open(12) + background_grid() +
+    labs(title = paste("Principal component", str_remove(pc_x,"PC"), "vs", "Principal component", str_remove(pc_y,"PC")),
+         x = paste(pc_x),
+         y = paste(pc_y),
+         color = "Tumor outcome")
+}
+```
+
+```{r, fig.height = 10, fig.align='center', fig.width=12}
+PC1vPC2 <- plot_pc("PC1", "PC2") + coord_fixed(xlim = c(-5,5), ylim = c(-3,5))
+PC1vPC3 <- plot_pc("PC1", "PC3") + coord_fixed(xlim = c(-5,5), ylim = c(-3,5))
+PC2vPC3 <- plot_pc("PC2", "PC3") + coord_fixed(xlim = c(-5,5), ylim = c(-3,5))
+
+plot_list <- list(PC1vPC2, PC1vPC3, PC2vPC3)
+
+plot_grid(plotlist = plot_list, nrow = 3)
+```
+
+Already here based on the coordinates we can see that principal component 1 has significant influence on the tumour outcome, as would be expected of the principal component with the higest variance which we will compare later.
+
+## Variance explained by each PC
+
+Here, we’ll plot the variance explained by each PC.
+
+```{r}
+pca_fit %>%
+  tidy(matrix = "eigenvalues") %>%
+  ggplot(aes(PC, percent)) +
+  geom_col(fill = "blue", alpha = 0.8) +
+  scale_x_continuous(breaks = 1:9) +
+  scale_y_continuous(
+    labels = scales::percent_format(),
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  theme_minimal_hgrid(12)
+```
+
+The first component captures 65% of the variation in the data and, as we can see from the first plot in this post, nicely separates the benign samples from the malignant samples.
