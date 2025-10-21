@@ -27,6 +27,14 @@ for (i in seq(-1, 5, by = 2)) {
 }
 ```
 
+### Analysis - test
+
+we pray it works
+
+```{r}
+print("Praying it doesn't Delete")
+```
+
 ## s235354 - Alexander
 
 ## 
