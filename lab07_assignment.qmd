@@ -65,4 +65,4 @@ plot_list <- list(PC1vPC2, PC1vPC3, PC2vPC3)
 plot_grid(plotlist = plot_list, nrow = 3)
 ```
 
-Already here based on the coordinates we can see that PC1 has significant influence on the tumour outcome, as would be expected of the principal component with the higest variance as we will show later.
+Already here based on the coordinates we can see that principal component 1 has significant influence on the tumour outcome, as would be expected of the principal component with the higest variance which we will compare later.
