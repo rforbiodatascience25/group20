@@ -32,7 +32,8 @@ pca_fit <- biopsy |>
 
 ```{r}
 pca_fit_score <- pca_fit |>
-  augment(biopsy)
+  augment(biopsy) |>
+  rename_with(~str_remove(.x, ".fitted"), starts_with(".fitted"))
 ```
 
 ## Analysis
@@ -47,29 +48,13 @@ plot_pc <- function(pc_x, pc_y) {
       values = c(malignant = "salmon", benign = "skyblue")
     ) +
     theme_half_open(12) + background_grid() +
-    labs(title = paste(pc_x, "vs", pc_y),
+    labs(title = paste("Principal component", str_remove(pc_x,"PC"), "vs", "Principal component", str_remove(pc_y,"PC")),
          x = paste(pc_x),
          y = paste(pc_y),
          color = "Tumor outcome")
 }
-  
 ```
 
 ```{r}
-pca_fit |>
-  augment(biopsy) |>
-  ggplot(aes(.fittedPC1, .fittedPC2, color = outcome)) + 
-  geom_point(size = 1.5) +
-  scale_color_manual(
-    values = c(malignant = "salmon", benign = "skyblue")
-  ) +
-  theme_half_open(12) + background_grid() +
-  labs(title = "PCA Space",
-       x = "Principal component 1", 
-       y = "Principal component 2",
-       color = "Tumor outcome")
-```
-
-```{r}
-plot_pc(".fittedPC1", ".fittedPC2")
+plot_pc("PC1", "PC2")
 ```
