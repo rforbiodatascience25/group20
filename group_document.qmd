@@ -47,6 +47,8 @@ list <- c(1,2,3)
 list 
 ```
 
+<<<<<<< HEAD
+=======
 ### Next feature
 
 test the branch
@@ -56,6 +58,7 @@ list2 <- c(4,5,6)
 list2
 ```
 
+>>>>>>> 856262e7e29035292bd652a336441dcb447e5c1a
 ## s252613
 
 Hi Guys :)
@@ -64,4 +67,14 @@ Hi Guys :)
 library(tidyverse)
 library(ggplot2)
 c <- 2
+```
+
+New feature
+
+I don't know what to type.
+
+```{r}
+c <- 1
+q <- 2
+j <- 3
 ```
