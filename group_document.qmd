@@ -20,4 +20,5 @@ Hi Guys :)
 
 ```{r}
 library(tidyverse)
+library(ggplot2)
 ```
