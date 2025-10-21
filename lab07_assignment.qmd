@@ -85,3 +85,26 @@ pca_fit %>%
 ```
 
 The first component captures 65% of the variation in the data and, as we can see from the first plot in this post, nicely separates the benign samples from the malignant samples.
+
+## Loading Analysis
+
+Now let's look at which of the nine biopsy measurements actually drive the
+principal components. The loadings show us how much each variable contributes
+to each PC, helping us understand what the components actually represent.
+
+```{r}
+library(ggrepel)
+
+pca_fit %>%
+  tidy(matrix = "rotation") %>%
+  pivot_wider(names_from = "PC", names_prefix = "PC", values_from = "value") %>%
+  ggplot(aes(PC1, PC2)) +
+  geom_segment(aes(xend = 0, yend = 0), 
+               arrow = arrow(length = unit(0.2, "cm")),
+               color = "steelblue", linewidth = 0.8) +
+  geom_text_repel(aes(label = column), size = 3.5, max.overlaps = 20) +
+  theme_minimal_grid() +
+  labs(x = "PC1 Loading", y = "PC2 Loading")
+```
+
+All nine measurements load strongly and similarly on PC1, meaning malignant tumors tend to score high across all features together. This is why PC1 effectively separates benign from malignant tumors. PC2 is mainly driven by mitoses, capturing additional variation in cell division rates.
