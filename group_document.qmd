@@ -6,6 +6,13 @@ editor: visual
 
 ## s235430
 
+Welcome to my document, ***I*** (me) am the captain.
+
+```{r}
+x <- 1
+x
+```
+
 ## s225015
 
 ## s235354
