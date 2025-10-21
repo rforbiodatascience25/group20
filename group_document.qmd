@@ -6,13 +6,36 @@ editor: visual
 
 ## s235430
 
+Welcome to my document, ***I*** (me) am the captain.
+
+```{r}
+x <- 1
+x
+```
+
 ## s225015
 
 ## s235354
 
-## 
+Hey, this is text!
 
-## s251930
+It can even be **bold**
+
+```{r}
+# This R code may do something
+a <- 2
+b <- 3*a
+print(b)
+```
+
+## s251930 - Laurine
+
+```{r}
+#little code to test the document 
+
+list <- c(1,2,3,4)
+list 
+```
 
 ## s252613
 
