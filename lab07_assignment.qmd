@@ -30,9 +30,30 @@ pca_fit <- biopsy |>
   prcomp(scale = TRUE)
 ```
 
+```{r}
+pca_fit_score <- pca_fit |>
+  augment(biopsy)
+```
+
 ## Analysis
 
 ## PC coordinates
+
+```{r}
+plot_pc <- function(pc_x, pc_y) {
+  ggplot(pca_fit_score, aes_string(x = pc_x, y = pc_y, color = "outcome")) +
+    geom_point(size = 1.5, alpha = 0.8) +
+    scale_color_manual(
+      values = c(malignant = "salmon", benign = "skyblue")
+    ) +
+    theme_half_open(12) + background_grid() +
+    labs(title = paste(pc_x, "vs", pc_y),
+         x = paste(pc_x),
+         y = paste(pc_y),
+         color = "Tumor outcome")
+}
+  
+```
 
 ```{r}
 pca_fit |>
@@ -47,4 +68,8 @@ pca_fit |>
        x = "Principal component 1", 
        y = "Principal component 2",
        color = "Tumor outcome")
+```
+
+```{r}
+plot_pc(".fittedPC1", ".fittedPC2")
 ```
