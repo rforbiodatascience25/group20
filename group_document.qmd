@@ -47,8 +47,6 @@ list <- c(1,2,3)
 list 
 ```
 
-<<<<<<< HEAD
-=======
 ### Next feature
 
 test the branch
@@ -58,7 +56,6 @@ list2 <- c(4,5,6)
 list2
 ```
 
->>>>>>> 856262e7e29035292bd652a336441dcb447e5c1a
 ## s252613
 
 Hi Guys :)
