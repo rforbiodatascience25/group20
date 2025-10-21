@@ -10,7 +10,16 @@ editor: visual
 
 ## s235354
 
-## 
+Hey, this is text!
+
+It can even be **bold**
+
+```{r}
+# This R code may do something
+a <- 2
+b <- 3*a
+print(b)
+```
 
 ## s251930
 
