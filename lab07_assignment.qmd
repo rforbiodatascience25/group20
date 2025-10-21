@@ -10,6 +10,7 @@ editor: visual
 library("tidyverse")
 library("broom")
 library("cowplot")
+library("ggrepel")
 ```
 
 ## Load data
@@ -72,37 +73,36 @@ Already here based on the coordinates we can see that principal component 1 has 
 Here, we’ll plot the variance explained by each PC.
 
 ```{r}
-pca_fit %>%
-  tidy(matrix = "eigenvalues") %>%
+pca_fit |>
+  tidy(matrix = "eigenvalues") |>
   ggplot(aes(PC, percent)) +
-  geom_col(fill = "blue", alpha = 0.8) +
+  geom_col(fill = "lightblue", alpha = 0.8, color = "black") +
   scale_x_continuous(breaks = 1:9) +
   scale_y_continuous(
     labels = scales::percent_format(),
     expand = expansion(mult = c(0, 0.01))
   ) +
-  theme_minimal_hgrid(12)
+  theme_minimal_hgrid(12) +
+  labs(y = "Percent variance explained")
 ```
 
 The first component captures 65% of the variation in the data and, as we can see from the first plot in this post, nicely separates the benign samples from the malignant samples.
 
 ## Loading Analysis
 
-Now let's look at which of the nine biopsy measurements actually drive the
-principal components. The loadings show us how much each variable contributes
-to each PC, helping us understand what the components actually represent.
+Now let's look at which of the nine biopsy measurements actually drive the principal components. The loadings show us how much each variable contributes to each PC, helping us understand what the components actually represent.
 
 ```{r}
-library(ggrepel)
-
-pca_fit %>%
-  tidy(matrix = "rotation") %>%
-  pivot_wider(names_from = "PC", names_prefix = "PC", values_from = "value") %>%
+pca_fit |>
+  tidy(matrix = "rotation") |>
+  pivot_wider(names_from = "PC", names_prefix = "PC", values_from = "value") |>
   ggplot(aes(PC1, PC2)) +
   geom_segment(aes(xend = 0, yend = 0), 
-               arrow = arrow(length = unit(0.2, "cm")),
+               arrow = arrow(ends = "first", length = unit(0.2, "cm")),
                color = "steelblue", linewidth = 0.8) +
-  geom_text_repel(aes(label = column), size = 3.5, max.overlaps = 20) +
+  geom_text_repel(aes(label = column), 
+                  size = 3.5, max.overlaps = 20, 
+                  hjust = 1, vjust = 1) +
   theme_minimal_grid() +
   labs(x = "PC1 Loading", y = "PC2 Loading")
 ```
