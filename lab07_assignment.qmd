@@ -66,3 +66,22 @@ plot_grid(plotlist = plot_list, nrow = 3)
 ```
 
 Already here based on the coordinates we can see that principal component 1 has significant influence on the tumour outcome, as would be expected of the principal component with the higest variance which we will compare later.
+
+## Variance explained by each PC
+
+Here, we’ll plot the variance explained by each PC.
+
+```{r}
+pca_fit %>%
+  tidy(matrix = "eigenvalues") %>%
+  ggplot(aes(PC, percent)) +
+  geom_col(fill = "blue", alpha = 0.8) +
+  scale_x_continuous(breaks = 1:9) +
+  scale_y_continuous(
+    labels = scales::percent_format(),
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  theme_minimal_hgrid(12)
+```
+
+The first component captures 65% of the variation in the data and, as we can see from the first plot in this post, nicely separates the benign samples from the malignant samples.
