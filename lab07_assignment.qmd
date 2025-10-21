@@ -31,3 +31,20 @@ pca_fit <- biopsy |>
 ```
 
 ## Analysis
+
+## PC coordinates
+
+```{r}
+pca_fit |>
+  augment(biopsy) |>
+  ggplot(aes(.fittedPC1, .fittedPC2, color = outcome)) + 
+  geom_point(size = 1.5) +
+  scale_color_manual(
+    values = c(malignant = "salmon", benign = "skyblue")
+  ) +
+  theme_half_open(12) + background_grid() +
+  labs(title = "PCA Space",
+       x = "Principal component 1", 
+       y = "Principal component 2",
+       color = "Tumor outcome")
+```
