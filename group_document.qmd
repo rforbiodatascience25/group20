@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## s235430
+## s235430 - Rasmus T.C
 
 ## s225015
 
@@ -20,7 +20,7 @@ for (i in seq(-1, 5, by = 2)) {
 }
 ```
 
-## s235354
+## s235354 - Alexander
 
 ## 
 
