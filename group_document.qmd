@@ -44,4 +44,5 @@ Hi Guys :)
 ```{r}
 library(tidyverse)
 library(ggplot2)
+c <- 2
 ```
