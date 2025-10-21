@@ -15,3 +15,9 @@ editor: visual
 ## s251930
 
 ## s252613
+
+Hi Guys :)
+
+```{r}
+library(tidyverse)
+```
