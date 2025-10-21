@@ -41,6 +41,8 @@ pca_fit_score <- pca_fit |>
 
 ## PC coordinates
 
+As we have 9 principal components we will first setup a function for comparative plotting of the PCA space.
+
 ```{r}
 plot_pc <- function(pc_x, pc_y) {
   ggplot(pca_fit_score, aes_string(x = pc_x, y = pc_y, color = "outcome")) +
@@ -55,6 +57,8 @@ plot_pc <- function(pc_x, pc_y) {
          color = "Tumor outcome")
 }
 ```
+
+Now we can compare the first three principal components to each other.
 
 ```{r, fig.height = 10, fig.align='center', fig.width=12}
 PC1vPC2 <- plot_pc("PC1", "PC2") + coord_fixed(xlim = c(-5,5), ylim = c(-3,5))
