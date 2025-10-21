@@ -13,6 +13,15 @@ x <- 2
 x
 ```
 
+### New analysis
+
+This is where I am going to be making my section of the analysis.
+
+```{r}
+mean <- (x+x)/2
+mean
+```
+
 ## s225015
 
 "Hello World"
@@ -28,8 +37,6 @@ for (i in seq(-1, 5, by = 2)) {
 ```
 
 ## s235354 - Alexander
-
-## 
 
 ## s251930 - Laurine
 
@@ -48,8 +55,6 @@ test the branch
 list2 <- c(4,5,6)
 list2
 ```
-
-## 
 
 ## s252613
 
