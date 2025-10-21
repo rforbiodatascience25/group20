@@ -29,8 +29,6 @@ for (i in seq(-1, 5, by = 2)) {
 
 ## s235354 - Alexander
 
-## 
-
 ## s251930 - Laurine
 
 here we go again
@@ -40,6 +38,18 @@ list <- c(1,2,3)
 list 
 ```
 
+<<<<<<< HEAD
+=======
+### Next feature
+
+test the branch
+
+```{r}
+list2 <- c(4,5,6)
+list2
+```
+
+>>>>>>> 856262e7e29035292bd652a336441dcb447e5c1a
 ## s252613
 
 Hi Guys :)
