@@ -31,7 +31,14 @@ for (i in seq(-1, 5, by = 2)) {
 
 ## 
 
-## s251930
+## s251930 - Laurine
+
+here we go again
+
+```{r}
+list <- c(1,2,3)
+list 
+```
 
 ## s252613
 
