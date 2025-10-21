@@ -6,6 +6,13 @@ editor: visual
 
 ## s235430 - Rasmus T.C
 
+Hello ***I*** am the captain
+
+```{r}
+x <- 2
+x
+```
+
 ## s225015
 
 "Hello World"
