@@ -8,9 +8,19 @@ editor: visual
 
 ```{r}
 library("tidyverse")
+library("broom")
+library("cowplot")
 ```
 
 ## Load data
+
+We will in this mini-report a biopsy dataset from the university of Wisconsin Hospitals. A set of 699 patients and a sample from nine variables with a scoring of 1-10 seen in the figure below, along with the outcome of the tumor.
+
+```{r}
+#| message: false
+biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
+biopsy |> glimpse(width = 5)
+```
 
 ## Data Wrangle
 
