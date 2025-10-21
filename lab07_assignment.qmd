@@ -24,4 +24,10 @@ biopsy |> glimpse(width = 5)
 
 ## Data Wrangle
 
+```{r}
+pca_fit <- biopsy |>
+  select(where(is.numeric)) |>
+  prcomp(scale = TRUE)
+```
+
 ## Analysis
