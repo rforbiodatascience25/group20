@@ -130,4 +130,4 @@ pca_fit |>
        y = "PC2")
 ```
 
-All nine measurements load strongly and similarly on PC1, meaning malignant tumors tend to score high across all features together. This is why PC1 effectively separates benign from malignant tumors. PC2 is mainly driven by mitoses, capturing additional variation in cell division rates.
+All nine attributes contribute to PC1, meaning malignant tumors tend to score high across all features together. This is why PC1 effectively separates benign from malignant tumors. We can also clearly see that PC2 is mainly driven by mitoses, capturing additional variation in cell division rates.
