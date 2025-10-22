@@ -126,8 +126,8 @@ pca_fit |>
                   hjust = 1,
                   vjust = 1) +
   theme_minimal_grid() +
-  labs(x = "PC1 Loading",
-       y = "PC2 Loading")
+  labs(x = "PC1",
+       y = "PC2")
 ```
 
 All nine measurements load strongly and similarly on PC1, meaning malignant tumors tend to score high across all features together. This is why PC1 effectively separates benign from malignant tumors. PC2 is mainly driven by mitoses, capturing additional variation in cell division rates.
