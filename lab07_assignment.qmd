@@ -12,6 +12,7 @@ library("tidyverse")
 library("broom")
 library("cowplot")
 library("ggrepel")
+library("table1")
 ```
 
 # Load data
@@ -43,6 +44,18 @@ This breast cancer database was obtained from the University of Wisconsin Hospit
 
 ```{r}
 biopsy |> head(5)
+```
+
+We can present the attributes in a table to get an idea of the differences between factors in a benign and malignant breast tumor.
+
+```{r}
+biopsy |>
+  mutate(outcome = factor(outcome)) |>
+  table1(x = formula(~clump_thickness + uniform_cell_size + 
+                       uniform_cell_shape + marg_adhesion +
+                       epithelial_cell_size + bare_nuclei +
+                       bland_chromatin + normal_nucleoli +
+                       mitoses | outcome), data = _)
 ```
 
 # Analysis
@@ -130,4 +143,4 @@ pca_fit |>
        y = "PC2")
 ```
 
-All nine attributes contribute to PC1, meaning malignant tumors tend to score high across all features together. This is why PC1 effectively separates benign from malignant tumors. We can also clearly see that PC2 is mainly driven by mitoses, capturing additional variation in cell division rates.
+All nine attributes contribute to PC1, meaning malignant tumors tend to score high across all features together which matches what we saw earlier in the table. This is why PC1 effectively separates benign from malignant tumors. We can also clearly see that PC2 is mainly driven by mitoses, capturing additional variation in cell division rates.
