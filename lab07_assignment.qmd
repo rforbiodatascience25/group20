@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Load Libraries
+# Load Libraries
 
 ```{r}
 #| message: false
@@ -14,17 +14,16 @@ library("cowplot")
 library("ggrepel")
 ```
 
-## Load data
+# Load data
 
 We will in this mini-report a biopsy dataset from the university of Wisconsin Hospitals. A set of 699 patients and a sample from nine variables with a scoring of 1-10 seen in the figure below, along with the outcome of the tumor.
 
 ```{r}
 #| message: false
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
-biopsy |> glimpse(width = 5)
 ```
 
-## Data Wrangle
+# Data Wrangle
 
 ```{r}
 pca_fit <- biopsy |>
@@ -38,7 +37,15 @@ pca_fit_score <- pca_fit |>
   rename_with(~str_remove(.x, ".fitted"), starts_with(".fitted"))
 ```
 
-## Analysis
+# Data Description
+
+This breast cancer database was obtained from the University of Wisconsin Hospitals, It consists of assessed biopsies of breast tumours for 699 patients; each of nine attributes has been scored on a scale of 1 to 10, and the outcome is also known. It has 10 collumns and 683 rows.
+
+```{r}
+biopsy |> head(5)
+```
+
+# Analysis
 
 ## PC coordinates
 
@@ -111,7 +118,7 @@ pca_fit |>
               values_from = "value") |>
   ggplot(aes(PC1, PC2)) +
   geom_segment(aes(xend = 0, yend = 0), 
-               arrow = arrow(ends = "first", length = unit(0.2, "cm")),
+               arrow = arrow(ends = "first", length = grid::unit(8, "pt")),
                color = "steelblue", linewidth = 0.8) +
   geom_text_repel(aes(label = column), 
                   size = 3.5,
