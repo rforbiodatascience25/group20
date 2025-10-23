@@ -40,7 +40,7 @@ pca_fit_score <- pca_fit |>
 
 # Data Description
 
-This breast cancer database was obtained from the University of Wisconsin Hospitals, It consists of assessed biopsies of breast tumours for 699 patients; each of nine attributes has been scored on a scale of 1 to 10, and the outcome is also known. It has 10 collumns and 683 rows.
+This breast cancer database was obtained from the University of Wisconsin Hospitals, It consists of assessed biopsies of breast tumours for 699 patients; each of nine attributes has been scored on a scale of 1 to 10, and the outcome is also known. It has 10 columns and 683 rows.
 
 ```{r}
 biopsy |> head(5)
