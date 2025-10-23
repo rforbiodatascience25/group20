@@ -49,6 +49,7 @@ biopsy |> head(5)
 We can present the attributes in a table to get an idea of the differences between factors in a benign and malignant breast tumor.
 
 ```{r}
+#| message: false
 biopsy |>
   mutate(outcome = factor(outcome)) |>
   table1(x = formula(~clump_thickness + uniform_cell_size + 
